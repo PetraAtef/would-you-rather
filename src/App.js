@@ -1,58 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { Component, Fragment } from 'react';
+import Login from './components/Login';
 import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Dashboard from './components/Dashboard';
+import { connect } from 'react-redux'
+import { handleInitialData } from './state/action-creators/index'
+import  LoadingBar  from 'react-redux-loading-bar';
+import NewQuestion from './components/NewQuestion';
+import Navbar from './components/Navbar';
+import ViewQuestion from './components/ViewQuestion';
+import ProtectedRoute from './ProtectedRoute';
+import Leaderboard from './components/Leaderboard';
+import Page404 from './components/Page404';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+class App extends Component{
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
+  render(){
+    return (
+      <BrowserRouter>
+      <Fragment>
+        <LoadingBar />
+            <Route path='/login' exact component={Login} />
+           {this.props.logged_in === true? <Login/>
+           : <div>
+             <Navbar/>
+             {/* <ProtectedRoute path='/' component={Navbar} /> */}
+             <ProtectedRoute path='/' name='Dashboard' exact component={Dashboard} />
+             <ProtectedRoute path='/question/:id' exact component={ViewQuestion} />
+             <ProtectedRoute path='/new' exact component={NewQuestion} />
+             <ProtectedRoute path='/leaderboard' exact component={Leaderboard} />
+             <ProtectedRoute path='/404' exact component={Page404} />
+             {/* <Route path */}
+           </div>
+           }
+      </Fragment>
+      </BrowserRouter>
+      
+    );
+  }
 }
 
-export default App;
+function mapStateToProps ({ authedUser }) {
+  return {
+    logged_in: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App);

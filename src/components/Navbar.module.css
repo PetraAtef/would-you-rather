@@ -1,0 +1,36 @@
+.nav{
+    background-color: #222222;
+    width: 100vw;
+    display: flex;
+    height: 50px;
+    font-size: 16px;
+    padding: 0px 4%;
+}
+.link{
+    display: inline;
+    width: fit-content;
+    margin: auto;
+    color: darkorange;
+    text-decoration: none;
+}
+.link:focus{
+    text-decoration: underline;
+    color: orange;
+}
+.userName{
+    display: inline;
+    margin: auto 20px;
+    color: white;
+}
+.logout{
+    display: inline;
+    margin: auto;
+    background-color: #222222;
+    border: 2px solid white;
+    color: darkorange;
+    border-radius: 10px;
+}
+.userInfo{
+    height: fit-content;
+    margin: auto;
+}

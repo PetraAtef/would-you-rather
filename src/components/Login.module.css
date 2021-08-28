@@ -1,0 +1,57 @@
+.parent{
+    height:100vh;
+    width:100vw;
+    display: flex;
+    background-color: #121212;
+}
+
+.container{
+    margin: auto;
+    height: auto;
+    width:50%;
+    box-shadow: 1px 1px black;
+    border: 2px solid white;
+    background-color: #222222;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+/* #6CBDE8 */
+.login{
+display: block;    
+font-size: 50px;
+letter-spacing: 1px;
+width: fit-content;
+margin: 30px auto;
+font-weight: 500;
+color:orange;
+}
+.input{
+    display: block;
+    font-size: 30px;
+    margin: 30px auto;
+    font-weight: 500;
+    color:white;
+    width: 75%;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #222222;
+    }
+
+.button{
+    align-self: center;
+    font-size: 25px;
+    height: 45px;
+    color:white;
+    border-radius: 10px;
+    width:37.5%;
+    margin: 30px auto;
+    margin-bottom: 45px;
+    background-color: #222222;
+    outline: none;
+    border:2px solid #6CBDE8 ;
+    }
+    
+.button:hover,.input:hover{
+    cursor: pointer;
+    }
