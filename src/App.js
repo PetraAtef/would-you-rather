@@ -15,7 +15,7 @@ import Page404 from './components/Page404';
 
 class App extends Component{
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.handleInitialData();
   }
   render(){
     return (
@@ -28,8 +28,8 @@ class App extends Component{
              <Navbar/>
              {/* <ProtectedRoute path='/' component={Navbar} /> */}
              <ProtectedRoute path='/' name='Dashboard' exact component={Dashboard} />
-             <ProtectedRoute path='/question/:id' exact component={ViewQuestion} />
-             <ProtectedRoute path='/new' exact component={NewQuestion} />
+             <ProtectedRoute path='/questions/:id' exact component={ViewQuestion} />
+             <ProtectedRoute path='/add' exact component={NewQuestion} />
              <ProtectedRoute path='/leaderboard' exact component={Leaderboard} />
              <ProtectedRoute path='/404' exact component={Page404} />
              {/* <Route path */}
@@ -48,4 +48,4 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { handleInitialData })(App);

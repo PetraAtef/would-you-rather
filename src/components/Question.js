@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 class Question extends Component {
     onView=(e)=>{
-        this.props.history.push(`/question/${this.props.id}`)
+        this.props.history.push(`/questions/${this.props.id}`)
     }
     render() {
         const { id, author, optionOne, optionTwo } = this.props.question
@@ -25,7 +25,7 @@ class Question extends Component {
                     <p className={styles.option}>{optionTwo.text}</p>
                 </div>
                 
-                    <Link to={`question/${id}`} className={styles.questionBtn}>
+                    <Link to={`questions/${id}`} className={styles.questionBtn}>
                         <button className={styles.questionBtn}>View Poll</button>
                     </Link>
                 

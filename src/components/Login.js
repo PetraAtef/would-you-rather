@@ -47,8 +47,8 @@ class Login extends Component {
                 
                 <p className={styles.login}>LOGIN</p>
                 
-                <select className={styles.input} id="login" name="login" onChange={this.chooseUser} >
-                    <option key='default' value="" selected disabled>Select User</option>
+                <select className={styles.input} id="login" name="login" onChange={this.chooseUser} value='Select User'>
+                    <option key='default' value='Select User' disabled>Select User</option>
                     {this.props.users.map((user) => (
                         <option value={user.id} key={user.id}>{user.name}</option>
                         ))}

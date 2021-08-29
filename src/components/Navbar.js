@@ -16,7 +16,7 @@ function Navbar ({ users, authedUser, dispatch, history }) {
           </NavLink>
         {/* </li>
         <li className={styles.il}> */}
-          <NavLink to='/new' activeClassName='active' className={styles.link}>
+          <NavLink to='/add' activeClassName='active' className={styles.link}>
             New Question
           </NavLink>
         {/* </li>

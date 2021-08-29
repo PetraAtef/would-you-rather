@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import styles from './ViewQuestion.module.css';
 import ProgressBar from './ProgressBar'
 import { handleAnswerQuestion } from '../state/action-creators';
@@ -9,6 +9,7 @@ import { handleAnswerQuestion } from '../state/action-creators';
 class ViewQuestion extends Component {
     state = {
         option:'',
+        redirect: null
     }
 
     onSelect = (e)=>{
@@ -29,10 +30,12 @@ class ViewQuestion extends Component {
     }
 
     render() {
-        const authedUser = this.props.authedUser
         const id = this.props.match.params.id
         const question = this.props.questions[id]
-        if(!question) this.props.history.push('/404')
+        if(!question) {
+            return <Redirect to='/404'/>
+        }
+        const authedUser = this.props.authedUser
         const {author, optionOne, optionTwo } = question
         const totalVotesOne = optionOne.votes.length
         const totalVotesTwo = optionTwo.votes.length
